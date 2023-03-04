@@ -21,7 +21,6 @@ accItem.forEach(item => {
 });
 
 
-
 // Прогресс бар при скроле 
 const progressBar = document.querySelector('.progress-bar')
 function progressBarFunction(){
@@ -32,8 +31,32 @@ function progressBarFunction(){
    let scrolled = scrollPosition / heightWindow * 100;
    console.log(scrolled);
    progressBar.style.width = scrolled + '%';
+  
+   setProgres(scrolled)
 };
 
 
-
 window.addEventListener('scroll',progressBarFunction);
+
+
+
+const circle = document.querySelector('.progress-ring--circle')
+const radis = circle.r.baseVal.value;
+console.log(radis) 
+const circumferense = 2 * Math.PI * radis;
+console.log(circumferense)
+circle.style.strokeDasharray = `${circumferense} ${circumferense}`
+circle.style.strokeDashoffset = circumferense;
+
+function setProgres(percent){
+   const offset = circumferense - percent/100 *circumferense;
+   circle.style.strokeDashoffset = offset;
+
+}
+
+
+
+
+
+
+
