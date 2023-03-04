@@ -5,9 +5,7 @@ const textItems = document.querySelectorAll(".accordion-text");
 
 accItem.forEach(item => {
    let titleItemHeight =  item.children[0].offsetHeight
-   console.log(titleItemHeight)
    let textItemHeight =  item.children[1].offsetHeight
-   console.log(textItemHeight)
    item.style.height = titleItemHeight + 'px'
    item.addEventListener('click', () => {
       
@@ -18,12 +16,24 @@ accItem.forEach(item => {
       });
       item.classList.add('active');
       item.style.height = titleItemHeight + textItemHeight + 'px';
-      
-
-
    });
 
 });
 
 
 
+// Прогресс бар при скроле 
+const progressBar = document.querySelector('.progress-bar')
+function progressBarFunction(){
+   let scrollPosition = document.body.scrollTop || document.documentElement.scrollTop;
+   let heightWindow = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+   console.log(scrollPosition);
+   console.log(heightWindow);
+   let scrolled = scrollPosition / heightWindow * 100;
+   console.log(scrolled);
+   progressBar.style.width = scrolled + '%';
+};
+
+
+
+window.addEventListener('scroll',progressBarFunction);
